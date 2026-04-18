@@ -1,0 +1,14 @@
+rules:
+  - rule: check_https
+    property: enable_https_traffic_only
+    expected: True
+    name: Check HTTPS
+    description: Checking to see if HTTPS is enabled on the storage account
+  
+  - rule: check_tls
+    property: minimum_tls_version
+    expected: TLS1_2
+    name: Check TLS Version
+    description: Checks the TLS version and making sure it matches TLS1_2
+
+  

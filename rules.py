@@ -2,14 +2,13 @@
 Compliance rules for Azure storage account checks
 
 To add a new check:
-    1. Write a function that takes a StorageAccount and returns a bool
-    2. Create a StorageAccountCompliance instance
-    3. Add it to the checks list
+    1. Add an entry to Rules/storage.yaml
 """
 
 from azure.mgmt.storage.models import StorageAccount
 from dataclasses import dataclass
 from typing import Callable
+import yaml
 
 @dataclass
 class StorageAccountCompliance:
@@ -17,24 +16,26 @@ class StorageAccountCompliance:
     description: str
     function: Callable[[StorageAccount], bool]
 
-# Compliance checks
-def check_https(account: StorageAccount):
-    return account.enable_https_traffic_only
+checks = []
 
-def check_tls(account: StorageAccount):
-    return account.minimum_tls_version == "TLS1_2"
-
-https_check_rule = StorageAccountCompliance(
-    "Check HTTPS",
-    "Checking to see if HTTPS is enabled on the storage account",
-    check_https
-)
-
-tls_check_rule = StorageAccountCompliance(
-    "Check TLS Version",
-    "Checks the TLS version and making sure it matches TLS1_2",
-    check_tls
-)
+def make_check(property_name, expected_value):
+    def check(account: StorageAccount):
+        return getattr(account, property_name) == expected_value
+    return check
 
 
-checks = [https_check_rule, tls_check_rule]
+try:
+    with open('Rules/storage.yaml') as stream:
+        obj = yaml.safe_load(stream=stream)
+        for rule in obj['rules']:
+            check = StorageAccountCompliance(
+                rule['name'],
+                rule['description'],
+                make_check(rule['property'], rule['expected'])
+            )
+            checks.append(check)
+            
+except FileNotFoundError as err:
+    print(err)
+except yaml.YAMLError as exc:
+    print(exc)
