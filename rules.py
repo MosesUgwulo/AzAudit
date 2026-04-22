@@ -25,7 +25,7 @@ def make_check(property_name, expected_value):
 
 
 try:
-    with open('Rules/storage.yaml') as stream:
+    with open('rules/storage.yaml') as stream:
         obj = yaml.safe_load(stream=stream)
         for rule in obj['rules']:
             check = StorageAccountCompliance(
