@@ -15,4 +15,3 @@ def scan(rules: list, storage_accounts: list[StorageAccount]):
             }
             list_of_results.append(results)
     return list_of_results
-            # print(f"{account.name} - {'Passed' if result else 'Failed'} - {check.name} - {check.description}")
