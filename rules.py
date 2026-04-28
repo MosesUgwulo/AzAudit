@@ -18,7 +18,7 @@ class StorageAccountCompliance:
 
 checks = []
 
-def make_check(property_name, expected_value):
+def make_check(property_name: str, expected_value):
     def check(account: StorageAccount):
         return getattr(account, property_name) == expected_value
     return check
