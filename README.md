@@ -64,7 +64,7 @@ Tests verify that the compliance check logic works correctly using mock objects 
 
 ## Test Infrastructure
 
-The project includes a Terraform configuration (`main.tf`) that provisions test storage accounts in Azure — one compliant and one non-compliant — so you can verify AzAudit detects both passing and failing checks.
+The project includes a Terraform configuration (`terraform/main.tf`) that provisions test storage accounts in Azure — one compliant and one non-compliant — so you can verify AzAudit detects both passing and failing checks.
 
 ```bash
 terraform init
