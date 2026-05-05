@@ -2,7 +2,7 @@
 Compliance rules for Azure storage account checks
 
 To add a new check:
-    1. Add an entry to Rules/storage.yaml
+    1. Add an entry to rules/storage.yaml
 """
 
 from azure.mgmt.storage.models import StorageAccount
