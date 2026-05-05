@@ -11,6 +11,7 @@ AzAudit connects to your Azure subscription, retrieves resource configurations, 
 - Python 3.10+
 - An Azure account with at least one subscription
 - Azure CLI installed and authenticated (`az login`)
+- Terraform (optional, for provisioning test resources)
 
 ## Setup
 
@@ -60,6 +61,23 @@ pytest
 ```
 
 Tests verify that the compliance check logic works correctly using mock objects — no Azure connection needed.
+
+## Test Infrastructure
+
+The project includes a Terraform configuration (`main.tf`) that provisions test storage accounts in Azure — one compliant and one non-compliant — so you can verify AzAudit detects both passing and failing checks.
+
+```bash
+terraform init
+terraform apply
+```
+
+To tear everything down when you're done:
+
+```bash
+terraform destroy
+```
+
+Requires Terraform installed and Azure CLI authenticated.
 
 ## Docker
 
