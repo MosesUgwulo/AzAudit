@@ -1,0 +1,5 @@
+Storage Acccount Name,Result,Compliance rule checked,Description of rule checked
+stazaudittest001,Passed,Check HTTPS,Checking to see if HTTPS is enabled on the storage account
+stazaudittest001,Passed,Check TLS Version,Checks the TLS version and making sure it matches TLS1_2
+stazaudittest002,Failed,Check HTTPS,Checking to see if HTTPS is enabled on the storage account
+stazaudittest002,Failed,Check TLS Version,Checks the TLS version and making sure it matches TLS1_2
