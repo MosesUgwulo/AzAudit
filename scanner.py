@@ -8,7 +8,7 @@ def scan(rules: list, storage_accounts: list[StorageAccount]):
         for check in rules:
             result = check.function(account)
             results = {
-                "Storage Acccount Name": account.name,
+                "Storage Account Name": account.name,
                 "Result": 'Passed' if result else 'Failed',
                 "Compliance rule checked": check.name,
                 "Description of rule checked": check.description
